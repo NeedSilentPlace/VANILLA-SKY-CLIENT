@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "face-api.js": "^0.18.0",
+    "jmuxer": "^1.1.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "react-video-tag": "0.0.10",
+    "socket.io-client": "^2.2.0",
+    "ws": "^6.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

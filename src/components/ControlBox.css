@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+.controlBox {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid darkorange;
+}
+.flightControl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid blue;
+    height: 381px;
+}
+.flightBox {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.flight {
+    border: 1px solid orange;
+    margin: 20px;
+    padding: 10px;
+    cursor: pointer;
+}

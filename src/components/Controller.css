@@ -1,0 +1,32 @@
+.controller {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 300px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.middlePart {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid blue;
+}
+.content {
+    display: flex;
+    background: white;
+    color: black;
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.5s;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
