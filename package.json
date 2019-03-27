@@ -7,6 +7,7 @@
     "jmuxer": "^1.1.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-icons": "^3.5.0",
     "react-scripts": "2.1.8",
     "react-video-tag": "0.0.10",
     "socket.io-client": "^2.2.0",

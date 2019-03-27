@@ -1,19 +1,74 @@
 .container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
 }
 .controlBox {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border: 1px solid darkorange;
+}
+.streamOff {
+    display: flex;
+    box-sizing: border-box;
+    width: 200px;
+    height: 100px;
+    font-size: 50px;
+    font-family: 'Lalezar', cursive;
+    align-items: center;
+    margin-bottom: 60px;
+    justify-content: center;
+    border-radius: 10px;
+    border: 2px solid #fc5454;
+    color: #ff5b5b;
+    text-shadow: 2px 2px 8px #e03131;
+    box-shadow: 3px 3px 18px 2px #d33031;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: .5s;
+}
+.streamOn {
+    display: flex;
+    box-sizing: border-box;
+    width: 200px;
+    height: 100px;
+    font-size: 50px;
+    font-family: 'Lalezar', cursive;
+    align-items: center;
+    margin-bottom: 60px;
+    justify-content: center;
+    border-radius: 10px;
+    border: 3px solid #3afa94;
+    color: #35ee8b;
+    text-shadow: 2px 2px 8px #1fbd69;
+    box-shadow: 3px 3px 18px 2px #21c76e;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: .5s;
+}
+.flightContainer {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: center;
+    height: 582px;
+    border-radius: 30px;
+    border-right: 3px solid #3a3a3a;
+    border-bottom: 3px solid #3a3a3a;
+
 }
 .flightControl {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid blue;
-    height: 381px;
+    padding: 0 20px;
+    background-color: rgb(66, 63, 63, 0.7);
+    height: 100%;
 }
 .flightBox {
     padding: 10px;
@@ -21,8 +76,25 @@
     justify-content: center;
 }
 .flight {
-    border: 1px solid orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3b3a3a;
+    border: 4px solid #2b2929;
+    box-shadow: 4px 4px 0px 1px #201f1f;
+    border-radius: 15px;
+    height: 40px;
     margin: 20px;
-    padding: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
     cursor: pointer;
+}
+.flight:active {
+    transform: translate(3px, 5px);
+}
+.left {
+    border-radius: 30px 0 0 30px;
+}
+.right {
+    border-radius: 0 30px 30px 0;
 }

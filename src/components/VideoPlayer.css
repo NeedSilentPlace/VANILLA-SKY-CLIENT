@@ -1,6 +1,8 @@
 #player {
-    width: 500px;
+    width: 750px;
 }
 .playerBox{
-    border: 1px solid red;
+    box-sizing: border-box;
+    border: 10px solid rgb(66, 63, 63, 0.7);
+    height: 100%
 }

@@ -1,0 +1,15 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fbfbfb
+}
+#master {
+    display: none;
+}
+.indicator {
+    display: flex;
+    margin-top: 100px;
+    align-items: center;
+    justify-content: center;
+}

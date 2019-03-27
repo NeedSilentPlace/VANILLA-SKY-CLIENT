@@ -1,8 +1,8 @@
 .controller {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
-    width: 300px;
+    width: 200px;
+    height: 45%;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -12,21 +12,57 @@
 .middlePart {
     display: flex;
     flex-direction: row;
-    border: 1px solid blue;
+}
+.arrow {
+    width: 100%;
 }
 .content {
     display: flex;
-    background: white;
-    color: black;
-    margin: 2px;
-    border: 1px solid black;
-    border-radius: 20px;
-    width: 40px;
-    height: 40px;
+    background: #3b3a3a;
+    border: 4px solid #2b2929;
+    color: #fbfbfb;
+    margin: 1px;
+    font-size: 25px;
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
     box-sizing: border-box;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.3s;
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    box-shadow: 4px 4px 0px 1px #201f1f;
+}
+.content:active {
+    transform: translate(3px, 5px);
+}
+.yellow {
+    background-color: #d4ce09;
+    border: 4px solid #b3ad09;
+    color: #000;
+    box-shadow: 4px 4px 0px 1px #1f1e1e;
+}
+.green {
+    background-color: #299617;
+    border: 4px solid #1f7c0e;
+    color: #000;
+    box-shadow: 4px 4px 0px 1px #1f1e1e;
+}
+.blue {
+    background-color: #2243B6;
+    border: 4px solid #15339e;
+    color: #000;
+    box-shadow: 4px 4px 0px 1px #1f1e1e;
+}
+.red {
+    background-color: #f71717;
+    border: 4px solid #d10a0a;
+    color: #000;
+    box-shadow: 4px 4px 0px 1px #1f1e1e;
+}
+.center {
+    background-color: transparent;
+    box-shadow: 0px 0px 0px 0px #1f1e1e;
+    border: none;
 }

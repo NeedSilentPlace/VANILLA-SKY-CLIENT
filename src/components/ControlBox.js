@@ -9,9 +9,18 @@ import {} from'face-api.js';
 class ControlBox extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isOnAir: false
+    };
+    this.onFlight = this.onFlight.bind(this);
   }
   onFlight(command) {
     const socket = io('http://localhost:8000');
+    if(command === 'takeoff') {
+
+    } else {
+
+    }
     return () => socket.emit('command', command);
   }
   onAir() {
@@ -36,26 +45,31 @@ class ControlBox extends Component {
     ws.addEventListener('error', (err) => {
         console.log(err);
     });
+    this.setState({
+      isOnAir: !this.state.isOnAir
+    });
   }
   render() {
     return (
       <div className='container'>
-      <button onClick={this.onAir}>click me</button>
-        <div className='flightControl'>
-          <div className='flightBox'>
-            <div className='flight' onClick={this.onFlight('takeoff')}>
-              TAKE-OFF
+        <div className={this.state.isOnAir ? 'streamOn' : 'streamOff'} onClick={this.onAir.bind(this)}>ON AIR</div>
+        <div className='flightContainer'>
+          <div className='flightControl left'>
+            <div className='flightBox'>
+              <div className='flight' onClick={this.onFlight('takeoff')}>
+                TAKE-OFF
+              </div>
+            </div>
+            <Controller type='heightAndPan' />
+            <div className='flightBox'>
+              <div className='flight' onClick={this.onFlight('land')}>
+                LAND
+              </div>
             </div>
           </div>
-          <Controller type='heightAndPan' />
-        </div>
-        <VideoPlayer person={this.props.standard} />
-        <div className='flightControl'>
-          <Controller />
-          <div className='flightBox'>
-            <div className='flight' onClick={this.onFlight('land')}>
-              LAND
-            </div>
+          <VideoPlayer person={this.props.standard} />
+          <div className='flightControl right'>
+            <Controller />
           </div>
         </div>
       </div>

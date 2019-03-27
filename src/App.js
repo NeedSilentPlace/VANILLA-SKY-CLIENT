@@ -3,6 +3,7 @@ import Header from './components/Header';
 import ControlBox from './components/ControlBox';
 import picture from './master.PNG';
 import { FaceMatcher, detectSingleFace, loadSsdMobilenetv1Model, loadFaceLandmarkModel, loadFaceRecognitionModel } from 'face-api.js';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -18,32 +19,33 @@ class App extends Component {
     await loadFaceRecognitionModel('/models');
     const result = await detectSingleFace('master')
                           .withFaceLandmarks()
-                          .withFaceDescriptor()
+                          .withFaceDescriptor();
     if(result) {
       const faceMatcher = new FaceMatcher(result);
-      console.log(faceMatcher);
       this.setState({
         faceMatcher
       });
-      // const singleResult = await detectSingleFace('person')
-      //                             .withFaceLandmarks()
-      //                             .withFaceDescriptor()
-      // if(singleResult) {
-      //   const bestMatch = faceMatcher.findBestMatch(singleResult.descriptor);
-      //   console.log(bestMatch);
-      // }
     } else {
       console.log('noope', result);
     }
     
   }
   render() {
-    console.log(this.state);
+    if(!this.state.faceMatcher) {
+      return (
+        <div>
+        <Header />
+        <div className='indicator'>
+          <img src='https://aeronux.com/templates/trip/image/loader.gif' />
+        </div>
+        <img id='master' src={picture} alt='stupid' ref={this.myRef} /> 
+      </div>  
+      );
+    }
     return (
       <div>
         <Header />
         <ControlBox standard={this.state.faceMatcher} />
-        <img id='master' src={picture} alt='stupid' ref={this.myRef} /> 
       </div>
     );
   }
