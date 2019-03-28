@@ -28,7 +28,6 @@ class App extends Component {
     } else {
       console.log('noope', result);
     }
-    
   }
   render() {
     if(!this.state.faceMatcher) {
@@ -36,9 +35,9 @@ class App extends Component {
         <div>
         <Header />
         <div className='indicator'>
-          <img src='https://aeronux.com/templates/trip/image/loader.gif' />
+          <img src='https://aeronux.com/templates/trip/image/loader.gif' alt='load indicator' />
         </div>
-        <img id='master' src={picture} alt='stupid' ref={this.myRef} /> 
+        <img id='master' src={picture} alt='owner' ref={this.myRef} /> 
       </div>  
       );
     }

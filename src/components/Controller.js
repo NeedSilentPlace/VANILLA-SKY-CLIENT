@@ -14,13 +14,13 @@ class Controller extends Component {
     if(type === 'heightAndPan') {
       return (
         <div className='controller'>
-          <div className='content' onClick={this.onCommand(`up ${distance}`)}><FaAngleDoubleUp /></div>
+          <div className='content' onClick={this.onCommand(`up 50`)}><FaAngleDoubleUp /></div>
           <div className='middlePart'>
             <div className='content' onClick={this.onCommand(`ccw 45`)}><FaUndoAlt /></div>
             <div className='content center'></div>
             <div className='content' onClick={this.onCommand(`cw 90`)}><FaRedoAlt /></div>
           </div>
-          <div className='content' onClick={this.onCommand(`down ${distance}`)}><FaAngleDoubleDown /></div>
+          <div className='content' onClick={this.onCommand(`down 50`)}><FaAngleDoubleDown /></div>
         </div>
       );
     } else {

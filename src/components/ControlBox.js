@@ -1,27 +1,71 @@
 import React, { Component } from 'react';
 import Controller from './Controller';
 import './ControlBox.css';
+import './Controller.css';
 import JMuxer from 'jmuxer';
 import VideoPlayer from './VideoPlayer';
 import io from 'socket.io-client';
-import {} from'face-api.js';
+import { FaBatteryFull, FaBatteryHalf, FaBatteryThreeQuarters, FaBatteryQuarter } from "react-icons/fa";
+import { IconContext } from 'react-icons';
 
 class ControlBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOnAir: false
+      isOnAir: false,
+      battery: 100
     };
+    this.onAir = this.onAir.bind(this);
     this.onFlight = this.onFlight.bind(this);
+    this.turnOn = this.turnOn.bind(this);
+    this.updateBatteryState = this.updateBatteryState.bind(this);
+    this.displayBatteryState = this.displayBatteryState.bind(this);
+    this.socket = io('http://localhost:8000');
+  }
+  componentDidMount() {
+    this.socket.on('battery', battery => this.updateBatteryState(battery));
+  }
+  updateBatteryState(battery) {
+    this.setState({
+      battery
+    });
+  }
+  displayBatteryState() {
+    if(this.state.battery <= 25) {
+      return (
+        <IconContext.Provider value={{ color: '#f20505', size: '35px' }}>
+          <FaBatteryQuarter />
+          <span style={{color: '#f20505', marginLeft: '10px'}}>{this.state.battery}%</span>
+        </IconContext.Provider>
+      );
+    }
+    if(this.state.battery <= 50) {
+      return (
+        <IconContext.Provider value={{ color: '#eeba30', size: '35px' }}>
+          <FaBatteryHalf />
+          <span style={{color: '#eeba30', marginLeft: '10px'}}>{this.state.battery}%</span>
+        </IconContext.Provider>
+      );
+    }
+    if(this.state.battery <= 75) {
+      return (
+        <IconContext.Provider value={{ color: '#8ec127', size: '35px' }}>
+          <FaBatteryThreeQuarters />
+          <span style={{color: '#8ec127', marginLeft: '10px'}}>{this.state.battery}%</span>
+        </IconContext.Provider>
+      );
+    }
+    if(this.state.battery <= 100) {
+      return (
+        <IconContext.Provider value={{ color: '#35ee8b', size: '35px' }}>
+          <FaBatteryFull />
+          <span style={{color: '#35ee8b', marginLeft: '10px'}}>{this.state.battery}%</span>
+        </IconContext.Provider>
+      );
+    }
   }
   onFlight(command) {
-    const socket = io('http://localhost:8000');
-    if(command === 'takeoff') {
-
-    } else {
-
-    }
-    return () => socket.emit('command', command);
+    return () => this.socket.emit('command', command);
   }
   onAir() {
     const socketURL = 'ws://localhost:8080';
@@ -30,10 +74,7 @@ class ControlBox extends Component {
         mode: 'video',
         flushingTime: 10,
         fps: 30,
-        debug: false,
-        onReady: function() {
-          console.log('im ready')
-        }
+        debug: false
     });
     const ws = new WebSocket(socketURL);
     ws.binaryType = 'arraybuffer';
@@ -45,6 +86,9 @@ class ControlBox extends Component {
     ws.addEventListener('error', (err) => {
         console.log(err);
     });
+    this.turnOn();
+  }
+  turnOn() {
     this.setState({
       isOnAir: !this.state.isOnAir
     });
@@ -52,7 +96,7 @@ class ControlBox extends Component {
   render() {
     return (
       <div className='container'>
-        <div className={this.state.isOnAir ? 'streamOn' : 'streamOff'} onClick={this.onAir.bind(this)}>ON AIR</div>
+        <div className={this.state.isOnAir ? 'streamOn' : 'streamOff'} onClick={this.onAir}>ON AIR</div>
         <div className='flightContainer'>
           <div className='flightControl left'>
             <div className='flightBox'>
@@ -68,8 +112,14 @@ class ControlBox extends Component {
             </div>
           </div>
           <VideoPlayer person={this.props.standard} />
+          <div className='battery'>{this.displayBatteryState()}</div>
           <div className='flightControl right'>
-            <Controller />
+            <div style={{ display: 'flex' }}>
+              <div className='content distance'>A</div>
+              <div className='content distance'>B</div>
+              <div className='content distance'>C</div>
+            </div>
+            <Controller distance={this.state.distance} />
           </div>
         </div>
       </div>

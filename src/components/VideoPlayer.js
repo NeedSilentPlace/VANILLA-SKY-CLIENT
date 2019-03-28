@@ -6,12 +6,7 @@ import io from 'socket.io-client';
 class VideoPlayer extends Component {
   constructor(props) {
     super(props);
-    this.isMaster = false;
-  }
-  componentDidUpdate(prevProps) {
-    if(this.props.person !== prevProps.person) {
-      console.log('send safely' ,this.props.person)
-    }
+    this.socket = io('http://localhost:8000');
   }
   async onPlay() {
     const video = document.getElementById('player')
@@ -35,8 +30,7 @@ class VideoPlayer extends Component {
       const bestMatch = faceMatcher.findBestMatch(singleResult.descriptor);
       const similarity = bestMatch._distance;
       if(similarity < 0.4) {
-        const socket = io('http://localhost:8000');
-        socket.emit('command', 'flip b');
+        this.socket.emit('command', 'flip b');
       }
       console.log(bestMatch);
     } else {
