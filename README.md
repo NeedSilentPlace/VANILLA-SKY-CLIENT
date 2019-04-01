@@ -1,68 +1,80 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# VANILLA SKY
 
-## Available Scripts
+# Introduction
 
-In the project directory, you can run:
+**VANILLA SKY**는 DJI tello 드론을 컨트롤 할 수 있는 웹용 애플리케이션입니다. \
+자신의 드론을 조종할 수 있으며, 드론의 영상정보를 브라우저에 실시간으로 스트리밍합니다. 더불어 드론 사용자의 사진을 인식시키면 영상정보와 사용자 사진을 비교하여 드론이 백플립을 할 수 있는 기능을 구현해 보았습니다.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Client
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+git clone https://github.com/NeedSilentPlace/VANILLA-SKY-CLIENT.git
+cd VANILLA-SKY-CLIENT
+npm install
+npm start
+```
 
-### `npm test`
+### Server
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+git clone https://github.com/NeedSilentPlace/VANILLA-SKY-SERVER.git
+cd VANILLA-SKY-SERVER
+npm install
+npm start
+```
 
-### `npm run build`
+## Feature
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Left Controller
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- take-off 및 land 버튼을 통한 이륙 착륙 기능
+- up/down 및 clockwise(cw), counter clockwise(ccw) 비행 고도 조절 및 방향 전환 기능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Right Controller
 
-### `npm run eject`
+- A: flip right, B: flip left, C: rc control 30 30 0 90
+- Forward/Backward/Left/Right 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Center Screen
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 드론 카메라 영상 스트리밍
+- face-api.js를 이용하여 사용자 얼굴 인식 후 백플립
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Client-Side Specification
 
-## Learn More
+- ES2015
+- React
+- face-api.js
+- socket.io-client
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Server-Side Specification
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ES2015
+- socket.io
+- Websocket
 
-### Code Splitting
+## Test (Client-side)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- Jest와 Enzyme을 이용하여 Component 단위 테스트 구현
 
-### Analyzing the Bundle Size
+## Challenges
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- tello 드론이 UDP 프로토콜 사용하여 처음의 기획과 다른 방향으로 프로젝트를 진행하게 되어 부담이 되었지만 TCP와 UDP에 대한 공부를 할 수 있는 좋은 기회가 되었습니다.
+- 실시간으로 영상을 스트리밍을 하는 데에 버퍼와 영상 데이터 타입에 대한 이해가 부족하다는 것을 많이 느꼈습니다. 스트림과 버퍼에 대한 공부를 더 해보고 싶어졌습니다.
+- face0api.js는 Tensorflow기반으로 만들어졌는데 Tensorflow의 핵심에 대한 이해가 부족한 것 같아 더 학습해 보려고 합니다.
 
-### Making a Progressive Web App
+## Things to do
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+기존의 기획을 추가해보려 합니다. UDP 프로토콜의 문제를 이더넷 LAN선 연결을 통해 사람들에게 실시간으로 영상을 스트리밍을 하면서 \
+채팅기능도 넣어 좀 더 유저들과 상호작용할 수 있는 서비스를 만들어 보고자 합니다.
 
-### Advanced Configuration
+- 실시간 채팅 기능
+- 드론 영상정보를 통한 사진 저장 및 동영상 저장
+- 디자인 수정 및 기능 추가
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+---
+Special thanks to [Ken Huh](https://github.com/Ken123777)
+and [Nashu](https://github.com/Choinashil)
