@@ -115,9 +115,9 @@ class ControlBox extends Component {
           <div className='battery'>{this.displayBatteryState()}</div>
           <div className='flightControl right'>
             <div style={{ display: 'flex' }}>
-              <div className='content distance'>A</div>
-              <div className='content distance'>B</div>
-              <div className='content distance'>C</div>
+              <div className='content distance' onClick={this.onFlight('flip r')}>A</div>
+              <div className='content distance' onClick={this.onFlight('flip l')}>B</div>
+              <div className='content distance' onClick={this.onFlight('rc 30 30 0 90')}>C</div>
             </div>
             <Controller distance={this.state.distance} />
           </div>
